@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `boletim_registro` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `boletim_registro`;
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: boletim_registro
@@ -18,31 +16,34 @@ USE `boletim_registro`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `materias`
+-- Table structure for table `boletim`
 --
 
-DROP TABLE IF EXISTS `materias`;
+DROP TABLE IF EXISTS `boletim`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `materias` (
-  `num_materia` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(15) NOT NULL,
-  `1_bimestre` decimal(2,1) DEFAULT '0.0',
-  `2_bimestre` decimal(2,1) DEFAULT '0.0',
-  `3_bimestre` decimal(2,1) DEFAULT '0.0',
-  `4_bimestre` decimal(2,1) DEFAULT '0.0',
-  PRIMARY KEY (`num_materia`),
-  UNIQUE KEY `nome` (`nome`)
+CREATE TABLE `boletim` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) NOT NULL,
+  `materia` int NOT NULL,
+  `1_bimestre` decimal(3,1) DEFAULT NULL,
+  `2_bimestre` decimal(3,1) DEFAULT NULL,
+  `3_bimestre` decimal(3,1) DEFAULT NULL,
+  `4_bimestre` decimal(3,1) DEFAULT NULL,
+  `total` decimal(4,1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `materia` (`materia`),
+  CONSTRAINT `boletim_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `materias` (`num_materia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `materias`
+-- Dumping data for table `boletim`
 --
 
-LOCK TABLES `materias` WRITE;
-/*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `materias` ENABLE KEYS */;
+LOCK TABLES `boletim` WRITE;
+/*!40000 ALTER TABLE `boletim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `boletim` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-29 21:57:58
+-- Dump completed on 2025-01-31 23:11:09
