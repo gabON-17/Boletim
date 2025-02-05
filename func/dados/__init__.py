@@ -45,7 +45,7 @@ def valida_str(msg=''): # Valida uma string para que não tenha caracteres espec
                         if cont == 1:
                             print('ERRO. Foi encontrado um valor inteiro no seu nome. Tente novamente.')
                             linha(15)
-                            continue
+                        continue
             break
     return string
 
@@ -56,3 +56,17 @@ def caractere(str):
         return True
     else:
         return False
+    
+
+def validaInt(msg=''):
+    while True:
+        try:
+            valor = int(input(msg))
+        except (ValueError, TypeError):
+            print('Valor digitado incorreto. Favor digite um número válido.')
+            linha(15)
+        except:
+            print('ERRO inesperado. Tente novamente.')
+            linha(15)
+        else:
+            return valor
